@@ -1,7 +1,7 @@
 <?php
-    include "templates/cabecera.php";
-    include "eb-cuadrdo.php";
-    include "formularios/formularioUnNum.php";
+    include "../templates/cabecera.html";
+    include "../utils/eb-cuadrado-calc.php";
+    include "../formularios/formularioUnNum.php";
 
     use function calcularCuadrado\crearCuadrado;
 
