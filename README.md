@@ -217,6 +217,7 @@ La función para printear resultado:
 ```
 
 Vista navegador
+
 ![Alt text](./imagenes-md/image3.png)
 
 ## eb-potencia
@@ -294,7 +295,7 @@ Aqui utilizamos las mismas funciones de imprimir resultado y el formulario de un
 
 Vista del ejercicio
 
-![Alt text](./imagenes-md/image5.png)
+![Alt text](./imagenes-md/imagen5.png)
 
 ## eb-multiplicacion
 ```php
@@ -345,7 +346,7 @@ Vista de tablas de multiplicar
 
 Vista del ejercicio
 
-![Alt text](./imagenes-md/image6.png)
+![Alt text](./imagenes-md/imagen6.png)
 
 ## eb-recorte
 ```php
@@ -392,7 +393,7 @@ Y la función para imprimir la string
 ```
 Vista del ejercicio
 
-![Alt text](./imagenes-md/image7.png)
+![Alt text](./imagenes-md/imagen7.png)
 
 ## eb-mes
 ```php
@@ -462,8 +463,8 @@ Luego utilizo la función imprimir mes
 
 Vista del ejercicio
 
-![Alt text](./imagenes-md/image8.png)
-![Alt text](./imagenes-md/image9.png)
+![Alt text](./imagenes-md/imagen8.png)
+![Alt text](./imagenes-md/imagen9.png)
 
 ## eb-acumulador
 ```php
