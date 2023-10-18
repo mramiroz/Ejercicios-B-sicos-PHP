@@ -505,6 +505,7 @@ Vista del ejercicio
 En este ejercicio utilizo un formulario que se va a ir sumando hasta que llegue a 50, una vez llegue a 50 se imprime la suma y se acaba el ejercicio.
 
 Vista del ejercicio
+
 ![Alt text](./imagenes-md/image10.png)
 
 ## eb-multiplos
@@ -536,6 +537,7 @@ Vista del ejercicio
 Calculo de todos los multiplos de 3 y 5 del 1 al 1000 y luego los primeros 20 multiplos.
 
 Vista del ejercicio
+
 ![Alt text](./imagenes-md/image11.png)
 
 ## eb-cuadrado
@@ -593,5 +595,6 @@ En este ejercicio utilizo el formulario de un numero y la función crear cuadrad
 ?>
 ```
 Vista del ejercicio
+
 ![Alt text](./imagenes-md/image12.png)
 
