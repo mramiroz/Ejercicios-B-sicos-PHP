@@ -9,8 +9,8 @@
     echo "<h1>Suma hasta limite</h1>";
     
     include "../formularios/formularioUnNum.php";
-    if(isset($_POST["numeroInput"])){
-        $limite = $_POST["numeroInput"];
+    if(isset($_POST[NUMERO_INPUT])){
+        $limite = $_POST[NUMERO_INPUT];
         $resultado = sumar($limite);
         printearResultado($resultado);
     }else{

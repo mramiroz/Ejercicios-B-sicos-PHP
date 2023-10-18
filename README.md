@@ -134,7 +134,7 @@ En un principio añadimos el formulario de dos numeros
 Posteriormente hago la diferencia de numeros y llamo a dos funciones para crear la vista del ejercicio en imprimirResultado.
 
 ```php
-    <?php
+<?php
     namespace imprimirResultado;
     CONST TAG_SALTO_LINEA = "<br>";
 
@@ -174,8 +174,8 @@ Y en el navegador sería
     echo "<h1>Suma hasta limite</h1>";
     
     include "../formularios/formularioUnNum.php";
-    if(isset($_POST["numeroInput"])){
-        $limite = $_POST["numeroInput"];
+    if(isset($_POST[NUMERO_INPUT])){
+        $limite = $_POST[NUMERO_INPUT];
         $resultado = sumar($limite);
         printearResultado($resultado);
     }else{
@@ -221,7 +221,7 @@ Vista navegador
 
 ## eb-potencia
 ```php
-    <?php
+<?php
     include "../templates/cabecera.html";
     include "../utils/imprimirResultado.php";
     include "../utils/calculadora.php";
@@ -232,12 +232,13 @@ Vista navegador
     echo "<h1>Calculadora de Potencia</h1>";
     
     include "../formularios/formularioDosNum.php";
-    if(isset($_POST["primerNumero"]) && isset($_POST["segundoNumero"])){
-        $base = $_POST["primerNumero"];
-        $exponente = $_POST["segundoNumero"];
+    if(isset($_POST[PRIMER_NUMERO]) && isset($_POST[SEGUNDO_NUMERO])){
+        $base = $_POST[PRIMER_NUMERO];
+        $exponente = $_POST[SEGUNDO_NUMERO];
         $resultado = calcularPotencia($base, $exponente);
         printearResultado($resultado);
     }
+
 ?>
 ```
 
@@ -253,4 +254,143 @@ El formulario es el mismo que hemos utilizado anteriormente y la impresión del 
     }
 ```
 Vista del ejercicio
+
 ![Alt text](./imagenes-md/image4.png)
+
+## eb-factorial
+
+```php
+<?php
+    include "../templates/cabecera.html";
+    include "../utils/calculadora.php";
+    include "../utils/imprimirResultado.php";
+
+    use function imprimirResultado\printearResultado;
+    use function calculadora\calcularFactorial;
+    
+    echo "<h1>Calculadora de Factorial</h1>";
+    include "../formularios/formularioUnNum.php";
+
+    if(isset($_POST[NUMERO_INPUT])){
+        $res = calcularFactorial($_POST[NUMERO_INPUT]);
+        printearResultado($res);
+    }else
+        echo "Introduce un numero";
+    include "../templates/pie.html";
+
+?>
+```
+Aqui utilizamos las mismas funciones de imprimir resultado y el formulario de un numero. Utilizamos una nueva que sería calcular factorial:
+
+```php
+    function calcularFactorial($num): int{
+        $res = 1;
+        for ($i=1; $i <= $num; $i++) { 
+            $res *= $i;
+        }
+        return $res;
+    }
+```
+
+Vista del ejercicio
+
+![Alt text](./imagenes-md/image5.png)
+
+## eb-multiplicacion
+```php
+<?php
+    include "../templates/cabecera.html";
+    include "../utils/calculadora.php";
+    include "../utils/imprimirResultado.php";
+
+    use function calculadora\calcularTablasMult;
+    use function imprimirResultado\printearTablaMult;
+
+    echo "<h1>Tablas de Multiplicar</h1>";
+    include "../formularios/formularioUnNum.php";
+    if(isset($_POST[NUMERO_INPUT])){
+        $num = $_POST[NUMERO_INPUT];
+        $resultado = calcularTablasMult($num);
+        printearTablaMult($resultado, $num);
+    }else
+        echo "Introduce numero";
+?>
+```
+En este reutilizo el formulario de un numero, pero al printerar utilizamos una función nueva y otra para calcular las tablas de multiplicar
+
+Calcular tablas de multiplicar:
+```php
+    CONST FINAL_TABLA_MULTIPLICAR = 10;
+    function calcularTablasMult($num): array{
+        $res = [];
+        for ($i=1; $i <= FINAL_TABLA_MULTIPLICAR; $i++) { 
+            $res[$i] = $num * $i;
+        }
+        return $res;
+    }
+```
+El resultado se mete en un array y se retorna posteriomente en la vista se recorre y para sacar el numero por el que se multiplica se suma 1 al indice del array.
+
+Vista de tablas de multiplicar
+
+```php
+    CONST TAG_SALTO_LINEA = "<br>";
+
+    function printearTablaMult($resultado, $num){
+        for ($i=0; $i < count($resultado); $i++) { 
+            echo $num." x ".($i + 1)." = ".$resultado[$i].TAG_SALTO_LINEA;
+        }
+    }
+```
+
+Vista del ejercicio
+
+![Alt text](./imagenes-md/image6.png)
+
+## eb-recorte
+```php
+<?php
+    include "../templates/cabecera.html";
+    include "../utils/imprimirResultado.php";
+    
+    use function imprimirResultado\imprimirString;
+    
+    echo "<h1>Imprimir String</h1>";
+    include "../formularios/formularioStr.php";
+
+    if(isset($_POST[STRING_INPUT])){
+        imprimirString($_POST[STRING_INPUT]);
+    }else
+        echo "Introduce String";
+?>
+```
+
+Utilizamos el formulario de str que es para el uso de strings:
+
+```php
+<?php
+    CONST STRING_INPUT = "stringInput";
+?>
+<form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8" );?>" method="post">
+    <input type="name" name="<?=STRING_INPUT?>" required>
+    <input type="submit" value="Enviar">
+</form>
+```
+
+Y la función para imprimir la string
+```php
+    CONST TAG_SALTO_LINEA = "<br>";
+
+    function imprimirString($str){
+        for ($i=0; $i < strlen($str); $i++) { 
+            for ($t=0; $t < strlen($str) - $i; $t++) { 
+                echo $str[$t]; 
+            }
+            echo TAG_SALTO_LINEA;
+        }
+    }
+```
+Vista del ejercicio
+
+![Alt text](./imagenes-md/image7.png)
+

@@ -6,10 +6,10 @@
     use function calculadora\calcularTablasMult;
     use function imprimirResultado\printearTablaMult;
 
-    echo "<h3>Pedir un número X y mostrar su tabla de multiplicar.</h3>";
+    echo "<h1>Tablas de Multiplicar</h1>";
     include "../formularios/formularioUnNum.php";
-    if(isset($_POST["numeroInput"])){
-        $num = $_POST["numeroInput"];
+    if(isset($_POST[NUMERO_INPUT])){
+        $num = $_POST[NUMERO_INPUT];
         $resultado = calcularTablasMult($num);
         printearTablaMult($resultado, $num);
     }else

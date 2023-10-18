@@ -2,16 +2,15 @@
     include "../templates/cabecera.html";
     include "../utils/calculadora.php";
     include "../utils/imprimirResultado.php";
-    
-    use function calculadora\calcularPotencia;
+
     use function imprimirResultado\printearResultado;
     use function calculadora\calcularFactorial;
     
-    echo "<h3>Pedir un número X y calcular su factorial utilizando iteraciones.</h3>";
+    echo "<h1>Calculadora de Factorial</h1>";
     include "../formularios/formularioUnNum.php";
 
-    if(isset($_POST["numeroInput"])){
-        $res = calcularFactorial($_POST["numeroInput"]);
+    if(isset($_POST[NUMERO_INPUT])){
+        $res = calcularFactorial($_POST[NUMERO_INPUT]);
         printearResultado($res);
     }else
         echo "Introduce un numero";
