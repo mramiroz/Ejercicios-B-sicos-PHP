@@ -394,3 +394,204 @@ Vista del ejercicio
 
 ![Alt text](./imagenes-md/image7.png)
 
+## eb-mes
+```php
+<?php
+    include "../templates/cabecera.html";
+    include "../utils/verificarMes.php";
+
+    use function verificarMes\imprimirMes;
+    
+    echo "<h1>Imprimir Mes</h1>";
+    include "../formularios/formularioMes.php";
+    if(isset($_POST[MES_INPUT])){
+        $mes = $_POST[MES_INPUT];
+        $bisiesto = "no";
+        if(isset($_POST[BISIESTO_INPUT]))
+            $bisiesto = $_POST[BISIESTO_INPUT];
+        imprimirMes($mes, $bisiesto);
+    }
+    include "../templates/pie.html";
+?>
+```
+Utilizamos el formulario del Mes
+
+```php
+<?php
+    CONST MES_INPUT = "mesInput";
+    CONST BISIESTO_INPUT = "bisiesto";
+?>
+
+<form action="" method="post">
+    <input type="text" name="<?=MES_INPUT?>">
+    <input type="radio" name="<?=BISIESTO_INPUT?>" value="si"> Bisiesto
+    <input type="submit" value="Enviar">
+</form>
+```
+
+Luego utilizo la función imprimir mes
+```php
+<?php
+    namespace verificarMes;
+
+    function imprimirMes($mesElegido, $bisiesto){
+        $mesesDias =[
+            "enero" => 31,
+            "febrero" => ($bisiesto == "si") ? 29 : 28,
+            "marzo" => 31,
+            "abril" => 30,
+            "mayo" => 31,
+            "junio" => 30,
+            "julio" => 31,
+            "agosto" => 31,
+            "septiembre" => 30,
+            "octubre" => 31,
+            "noviembre" => 30,
+            "diciembre" => 31,
+        ];
+        if(array_key_exists($mesElegido, $mesesDias)){
+            echo "<p>El mes $mesElegido tiene ".$mesesDias[strtolower($mesElegido)]." días. </p>";
+            echo "<p>El año es " . (($bisiesto == "si") ? "bisiesto." : "no bisiesto.") . "</p>";
+        }
+        else {
+            echo "Introduce un mes válido";
+        }
+    }
+?>
+```
+
+Vista del ejercicio
+
+![Alt text](./imagenes-md/image8.png)
+![Alt text](./imagenes-md/image9.png)
+
+## eb-acumulador
+```php
+<?php
+    include "../templates/cabecera.html";
+
+    CONST NUMERO_INPUT = "numeroInput";
+
+    function sumarNumeros($numero, $suma){
+        $numero = intval($numero);
+        $suma += $numero;
+        return $suma;
+    }
+
+    $suma = isset($_POST['suma']) ? $_POST['suma'] : 0;
+    if(isset($_POST[NUMERO_INPUT]))
+    {
+        $numero = $_POST[NUMERO_INPUT];
+        $suma = sumarNumeros($numero, $suma);
+    }
+
+    if ($suma > 50)
+        echo "Suma: ".$suma;
+    else{
+
+?>
+
+    <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, "UTF-8" );?>" method="post">
+        <input type="number" name="<?=NUMERO_INPUT?>" required>
+        <input type="hidden" name="suma" value="<?php echo $suma; ?>"> 
+        <button type="submit">Sumar</button>
+    </form>
+<?php
+        echo "Suma: ".$suma;
+    }
+    include "../templates/pie.html";
+?>
+```
+En este ejercicio utilizo un formulario que se va a ir sumando hasta que llegue a 50, una vez llegue a 50 se imprime la suma y se acaba el ejercicio.
+
+Vista del ejercicio
+![Alt text](./imagenes-md/image10.png)
+
+## eb-multiplos
+```php
+<?php
+    include "../templates/cabecera.html";
+    echo "<h1>Multiplos de 3 y 5 del 1 al 1000</h1>";
+    CONST TOPE = 20;
+    CONST TAG_LI_O = "<li>";
+    CONST TAG_LI_C = "</li>";
+    for ($i=1; $i <= 1000; $i++) { 
+        if($i % 3 == 0 && $i % 5 == 0)
+            echo "<li>$i</li>";
+    }
+
+    echo "<h2>Primeros 20 multiplos</h2>";
+    $count = 0;
+    for ($i=1; $i < 1000; $i++) { 
+        if($i % 3 == 0 && $i % 5 == 0){
+            echo TAG_LI_O.$i.TAG_LI_C;
+            $count++;
+        }
+        if($count == TOPE)
+            break;
+    }
+    include "../templates/pie.html";
+?>
+```
+Calculo de todos los multiplos de 3 y 5 del 1 al 1000 y luego los primeros 20 multiplos.
+
+Vista del ejercicio
+![Alt text](./imagenes-md/image11.png)
+
+## eb-cuadrado
+```php
+<?php
+    include "../templates/cabecera.html";
+    include "../utils/eb-cuadrado-calc.php";
+    include "../formularios/formularioUnNum.php";
+
+    use function calcularCuadrado\crearCuadrado;
+
+    if(isset($_POST[NUMERO_INPUT]))
+    {
+        $numero = $_POST[NUMERO_INPUT];
+        crearCuadrado($numero);
+    }
+    else
+        echo "Introduce un Numero";
+
+    include "../templates/pie.html";
+?>
+```
+En este ejercicio utilizo el formulario de un numero y la función crear cuadrado
+
+```php
+<?php
+    namespace calcularCuadrado;
+
+    CONST TABLE_A = "<table id='tabla'>";
+    CONST TABLE_C = "</table>";
+    CONST TAG_TR_A = "<tr>";
+    CONST TAG_TR_C = "</tr>";
+    CONST TAG_TD_C = "</td>";
+    CONST TAG_TD_A = "<td class='impar'>";
+    CONST TAG_TD_A_BLUE = "<td class='par'>";
+
+
+    function crearCuadrado(int $num){
+        $res = 0;
+        echo TABLE_A;
+        for ($i=1; $i <= $num; $i++) {
+            echo TAG_TR_A;
+            for($j=1; $j <= $num; $j++){
+                $res = $i * $j;
+                if($i % 2 == 0)
+                    echo TAG_TD_A_BLUE.$res.TAG_TD_C;
+                else
+                    echo TAG_TD_A.$res.TAG_TD_C;
+            }
+            echo TAG_TR_C;
+        }
+        echo TABLE_C;
+    }
+
+?>
+```
+Vista del ejercicio
+![Alt text](./imagenes-md/image12.png)
+

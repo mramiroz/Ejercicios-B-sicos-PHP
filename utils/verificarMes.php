@@ -16,8 +16,10 @@
             "noviembre" => 30,
             "diciembre" => 31,
         ];
-        if(array_key_exists($mesElegido, $mesesDias))
-            echo "<h2>El mes $mesElegido tiene ".$mesesDias[strtolower($mesElegido)]." días. </h2>";
+        if(array_key_exists($mesElegido, $mesesDias)){
+            echo "<p>El mes $mesElegido tiene ".$mesesDias[strtolower($mesElegido)]." días. </p>";
+            echo "<p>El año es " . (($bisiesto == "si") ? "bisiesto." : "no bisiesto.") . "</p>";
+        }
         else {
             echo "Introduce un mes válido";
         }

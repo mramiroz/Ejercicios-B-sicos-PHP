@@ -13,8 +13,5 @@
     else
         echo "Introduce un Numero";
 
-
-
-
-    include "templates/pie.php";
+    include "../templates/pie.html";
 ?>

@@ -1,13 +1,16 @@
 <?php
     include "../templates/cabecera.html";
     include "../utils/verificarMes.php";
-    include "../formularios/formularioMes.php";
 
     use function verificarMes\imprimirMes;
-
-    if(isset($_POST["bisiesto"])  && isset($_POST["mesInput"])){
-        $mes = $_POST["mesInput"];
-        $bisiesto = $_POST["bisiesto"];
+    
+    echo "<h1>Imprimir Mes</h1>";
+    include "../formularios/formularioMes.php";
+    if(isset($_POST[MES_INPUT])){
+        $mes = $_POST[MES_INPUT];
+        $bisiesto = "no";
+        if(isset($_POST[BISIESTO_INPUT]))
+            $bisiesto = $_POST[BISIESTO_INPUT];
         imprimirMes($mes, $bisiesto);
     }
     include "../templates/pie.html";

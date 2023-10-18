@@ -1,6 +1,10 @@
+<?php
+    CONST MES_INPUT = "mesInput";
+    CONST BISIESTO_INPUT = "bisiesto";
+?>
+
 <form action="" method="post">
-    <input type="text" name="mesInput">
-    <input type="radio" name="bisiesto" value="si" checked> Sí
-    <input type="radio" name="bisiesto" value="no"> No
+    <input type="text" name="<?=MES_INPUT?>">
+    <input type="radio" name="<?=BISIESTO_INPUT?>" value="si"> Bisiesto
     <input type="submit" value="Enviar">
 </form>
