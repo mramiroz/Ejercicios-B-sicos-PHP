@@ -6,7 +6,7 @@
     use function calculadora\sumarNumerosNaturales as sumar;
     use function imprimirResultado\printearResultado;
     
-    echo "<h3>Pedir un número X y calcular la suma de los X primeros números naturales (1 + 2 + 3 + …).</h3>";
+    echo "<h1>Suma hasta limite</h1>";
     
     include "../formularios/formularioUnNum.php";
     if(isset($_POST["numeroInput"])){

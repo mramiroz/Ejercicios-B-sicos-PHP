@@ -1,21 +1,19 @@
 <?php
     include "../templates/cabecera.html";
     include "../utils/imprimirResultado.php";
-    include "../utils/calculadora.php";
-    include "../formularios/formularioDosNum.php";
     
-    use function calculadora\calcularDiferencia;
     use function imprimirResultado\crearAlmohadillas;
     use function imprimirResultado\crearAsteriscos;
-
+    
     echo "<h1>Calculadora de Diferencia</h1>";
+    include "../formularios/formularioDosNum.php";    
 
-    if(isset($_POST["primerNumero"]) && isset($_POST["segundoNumero"])){
-        $primerNumero = $_POST["primerNumero"];
-        $segundoNumero = $_POST["segundoNumero"];
+    if(isset($_POST[PRIMER_NUMERO]) && isset($_POST[SEGUNDO_NUMERO])){
+        $primerNumero = $_POST[PRIMER_NUMERO];
+        $segundoNumero = $_POST[SEGUNDO_NUMERO];
         if (1 <= $primerNumero && $primerNumero <= 10 &&
              1 <= $segundoNumero && $segundoNumero <= 10){
-            $diferencia = calcularDiferencia($primerNumero, $segundoNumero);
+            $diferencia = $primerNumero - $segundoNumero;
             crearAsteriscos($diferencia);
             crearAlmohadillas($diferencia);
         }

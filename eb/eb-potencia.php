@@ -6,7 +6,7 @@
     use function calculadora\calcularPotencia;
     use function imprimirResultado\printearResultado;
     
-    echo "<h3>Pedir dos números A y B y calcular la potencia A elevado a B utilizando iteraciones (no una función matemática predefinida).</h3>";
+    echo "<h1>Calculadora de Potencia</h1>";
     
     include "../formularios/formularioDosNum.php";
     if(isset($_POST["primerNumero"]) && isset($_POST["segundoNumero"])){
